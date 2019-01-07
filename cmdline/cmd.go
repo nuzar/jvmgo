@@ -7,11 +7,12 @@ import (
 )
 
 type Cmd struct {
-	helpFlag    bool
-	versionFlag bool
-	cpOption    string
-	class       string
-	args        []string
+	HelpFlag    bool
+	VersionFlag bool
+	CpOption    string
+	Class       string
+	Args        []string
+	XjreOption  string
 }
 
 func PrintUsage() {
@@ -22,17 +23,18 @@ func ParseCmd(args []string) (*Cmd, error) {
 	cmd := &Cmd{}
 
 	flag.Usage = PrintUsage
-	flag.BoolVar(&cmd.helpFlag, "help", false, "print help message")
-	flag.BoolVar(&cmd.helpFlag, "?", false, "print help message")
-	flag.BoolVar(&cmd.versionFlag, "version", false, "print version and exit")
-	flag.StringVar(&cmd.cpOption, "classpath", "", "classpath")
-	flag.StringVar(&cmd.cpOption, "cp", "", "classpath")
+	flag.BoolVar(&cmd.HelpFlag, "help", false, "print help message")
+	flag.BoolVar(&cmd.HelpFlag, "?", false, "print help message")
+	flag.BoolVar(&cmd.VersionFlag, "version", false, "print version and exit")
+	flag.StringVar(&cmd.CpOption, "classpath", "", "classpath")
+	flag.StringVar(&cmd.CpOption, "cp", "", "classpath")
+	flag.StringVar(&cmd.XjreOption, "Xjre", "", "path to jre")
 
 	flag.Parse()
 
-	if len(args) > 0 {
-		cmd.class = args[0]
-		cmd.args = args[1:]
+	if len(args) > 1 {
+		cmd.Class = args[1]
+		cmd.Args = args[2:]
 	}
 
 	return cmd, nil
