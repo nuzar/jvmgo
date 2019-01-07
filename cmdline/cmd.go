@@ -18,7 +18,7 @@ func PrintUsage() {
 	fmt.Printf("Usage: %s [-option] class [args...]\n", os.Args[0])
 }
 
-func ParseCmd() (*Cmd, error) {
+func ParseCmd(args []string) (*Cmd, error) {
 	cmd := &Cmd{}
 
 	flag.Usage = PrintUsage
@@ -30,7 +30,6 @@ func ParseCmd() (*Cmd, error) {
 
 	flag.Parse()
 
-	args := flag.Args()
 	if len(args) > 0 {
 		cmd.class = args[0]
 		cmd.args = args[1:]
