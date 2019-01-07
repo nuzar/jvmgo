@@ -4,6 +4,6 @@ import (
 	"jvmgo/cmdline"
 )
 
-func startJVM(cmd *cmdline.Command) {
+func startJVM(cmd *cmdline.Cmd) {
 
 }

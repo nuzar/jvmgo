@@ -1,1 +1,1 @@
-module gojvm
+module jvmgo

@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	cmd, err := cmdline.ParseCommand(os.Args)
+	cmd, err := cmdline.ParseCmd(os.Args)
 	if err != nil {
 		cmdline.PrintUsage()
 	} else {
