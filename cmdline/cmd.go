@@ -19,7 +19,7 @@ func PrintUsage() {
 	fmt.Printf("Usage: %s [-option] class [args...]\n", os.Args[0])
 }
 
-func ParseCmd(args []string) (*Cmd, error) {
+func ParseCmd() (*Cmd, error) {
 	cmd := &Cmd{}
 
 	flag.Usage = PrintUsage
@@ -31,10 +31,14 @@ func ParseCmd(args []string) (*Cmd, error) {
 	flag.StringVar(&cmd.XjreOption, "Xjre", "", "path to jre")
 
 	flag.Parse()
-
+	args := flag.Args()
+	fmt.Printf("args: %v\n", args)
+	if len(args) == 1 {
+		cmd.Class = args[0]
+		fmt.Println("classname: " + cmd.Class)
+	}
 	if len(args) > 1 {
-		cmd.Class = args[1]
-		cmd.Args = args[2:]
+		cmd.Args = args[1:]
 	}
 
 	return cmd, nil
